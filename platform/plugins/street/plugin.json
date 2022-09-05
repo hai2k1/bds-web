@@ -1,0 +1,9 @@
+{
+    "name": "Street",
+    "namespace": "Botble\\Street\\",
+    "provider": "Botble\\Street\\Providers\\StreetServiceProvider",
+    "author": "N/A",
+    "url": "N/A",
+    "version": "1.0",
+    "description": "The description for module street"
+}
