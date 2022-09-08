@@ -19,7 +19,6 @@ class DatabaseSeeder extends BaseSeeder
         $this->call(LanguageSeeder::class);
         $this->call(PageSeeder::class);
         $this->call(GallerySeeder::class);
-        $this->call(BlogSeeder::class);
         $this->call(MemberSeeder::class);
         $this->call(ContactSeeder::class);
         $this->call(StaticBlockSeeder::class);

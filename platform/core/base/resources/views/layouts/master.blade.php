@@ -1,5 +1,5 @@
 @extends('core/base::layouts.base')
-
+@livewireStyles
 @section ('page')
     @include('core/base::layouts.partials.svg-icon')
 
@@ -38,7 +38,8 @@
 @section('javascript')
     @include('core/media::partials.media')
 @endsection
-
+@livewireScripts
+@livewireCalendarScripts
 @push('footer')
     @routes
 @endpush

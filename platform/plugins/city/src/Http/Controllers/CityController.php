@@ -157,7 +157,7 @@ class CityController extends BaseController
     public function getCity(Request $request)
     {
         $city = $this->cityRepository->getModel()->all();
-        
+
         return $city;
     }
 }
