@@ -1,14 +1,13 @@
 <?php
 
-namespace Botble\District\Models;
+namespace Botble\Wards\Models;
 
 use Botble\Base\Traits\EnumCastable;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Models\BaseModel;
-use Botble\City\Models\City;
-use Botble\Wards\Models\Wards;
+use Botble\District\Models\District;
 
-class District extends BaseModel
+class Wards extends BaseModel
 {
     use EnumCastable;
 
@@ -17,7 +16,7 @@ class District extends BaseModel
      *
      * @var string
      */
-    protected $table = 'districts';
+    protected $table = 'wards';
 
     /**
      * @var array
@@ -25,8 +24,8 @@ class District extends BaseModel
     protected $fillable = [
         'name',
         'code',
-        'city',
-         'status',
+        'district',
+        'status',
     ];
 
     /**
@@ -35,5 +34,6 @@ class District extends BaseModel
     protected $casts = [
         'status' => BaseStatusEnum::class,
     ];
+
 
 }

@@ -2,30 +2,27 @@
 
 namespace App\Restify;
 
-use App\Models\District;
-use App\Models\Wards;
+use Binaryk\LaravelRestify\Fields\BelongsTo;
 use Binaryk\LaravelRestify\Fields\Field;
-use Binaryk\LaravelRestify\Fields\HasMany;
+use Binaryk\LaravelRestify\Fields\HasOne;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
 
-
-class DistrictRepository extends Repository
+class WardsRepository extends Repository
 {
-    public static $model = District::class;
+    public static $model = \App\Models\Wards::class;
 
     public function fields(RestifyRequest $request): array
     {
         return [
             Field::make('name')->required(),
             Field::make('code')->required(),
-            Field::make('city')->required(),
+            Field::make('district')->required(),
         ];
     }
-
     public static function related(): array
     {
         return [
-          'wards'=>  HasMany::make('wards', WardsRepository::class),
+            'district'=>  HasOne::make('district', DistrictRepository::class),
         ];
     }
 }

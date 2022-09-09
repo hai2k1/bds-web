@@ -11,3 +11,7 @@
 |
 */
 Route::restifyAuth();
+Route::get('test',function (){
+    $user= \App\Models\Wards::with('ListDistrict')->get();
+    return response()->json($user);
+});

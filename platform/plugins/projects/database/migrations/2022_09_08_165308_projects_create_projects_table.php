@@ -11,7 +11,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('streets', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('code',255);
             $table->string('name', 255);
@@ -20,12 +20,12 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('streets_translations', function (Blueprint $table) {
+        Schema::create('projects_translations', function (Blueprint $table) {
             $table->string('lang_code');
-            $table->integer('streets_id');
+            $table->integer('projects_id');
             $table->string('name', 255)->nullable();
 
-            $table->primary(['lang_code', 'streets_id'], 'streets_translations_primary');
+            $table->primary(['lang_code', 'projects_id'], 'projects_translations_primary');
         });
     }
 
@@ -36,7 +36,7 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('streets');
-        Schema::dropIfExists('streets_translations');
+        Schema::dropIfExists('projects');
+        Schema::dropIfExists('projects_translations');
     }
 };
