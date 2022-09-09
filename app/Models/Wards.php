@@ -29,9 +29,8 @@ class Wards extends Model
         'status',
     ];
 
-    protected $primaryKey ='id';
-    public function  ListDistrict(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function  District(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->BelongsTo(District::class,'district');
+        return $this->BelongsTo(District::class,'district','code');
     }
 }

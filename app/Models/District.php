@@ -28,6 +28,6 @@ class District extends Model
     }
     public function wards(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->HasMany(Wards::class,'district','id');
+        return $this->HasMany(Wards::class,'district','code');
     }
 }

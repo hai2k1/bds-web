@@ -22,7 +22,7 @@ class WardsRepository extends Repository
     public static function related(): array
     {
         return [
-            'district'=>  HasOne::make('district', DistrictRepository::class),
+            'District'
         ];
     }
 }
