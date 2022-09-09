@@ -1,1 +1,72 @@
-(()=>{"use strict";function t(t,e){for(var a=0;a<e.length;a++){var i=e[a];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}var e=function(){function e(){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,e)}var a,i,n;return a=e,(i=[{key:"init",value:function(){$('[data-slider="owl"] .owl-carousel').each((function(t,e){var a,i,n,o,s,l,d=$(e).parent();"true"===d.data("single-item")?(a=1,i=1,n=1,o=1,s=1,l=1):(a=d.data("items"),i=[1199,d.data("desktop-items")?d.data("desktop-items"):a],n=[979,d.data("desktop-small-items")?d.data("desktop-small-items"):3],o=[768,d.data("tablet-items")?d.data("tablet-items"):2],l=[479,d.data("mobile-items")?d.data("mobile-items"):1]),$(e).owlCarousel({items:a,itemsDesktop:i,itemsDesktopSmall:n,itemsTablet:o,itemsTabletSmall:s,itemsMobile:l,navigation:!!d.data("navigation"),navigationText:!1,slideSpeed:d.data("slide-speed"),paginationSpeed:d.data("pagination-speed"),singleItem:!!d.data("single-item"),autoPlay:d.data("auto-play")})}))}}])&&t(a.prototype,i),n&&t(a,n),Object.defineProperty(a,"prototype",{writable:!1}),e}();$(document).ready((function(){(new e).init()}))})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+/*!************************************************************************!*\
+  !*** ./platform/plugins/gallery/resources/assets/js/object-gallery.js ***!
+  \************************************************************************/
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var ObjectGalleryManagement = /*#__PURE__*/function () {
+  function ObjectGalleryManagement() {
+    _classCallCheck(this, ObjectGalleryManagement);
+  }
+
+  _createClass(ObjectGalleryManagement, [{
+    key: "init",
+    value: function init() {
+      $('[data-slider="owl"] .owl-carousel').each(function (index, el) {
+        var parent = $(el).parent();
+        var items;
+        var itemsDesktop;
+        var itemsDesktopSmall;
+        var itemsTablet;
+        var itemsTabletSmall;
+        var itemsMobile;
+
+        if (parent.data('single-item') === 'true') {
+          items = 1;
+          itemsDesktop = 1;
+          itemsDesktopSmall = 1;
+          itemsTablet = 1;
+          itemsTabletSmall = 1;
+          itemsMobile = 1;
+        } else {
+          items = parent.data('items');
+          itemsDesktop = [1199, parent.data('desktop-items') ? parent.data('desktop-items') : items];
+          itemsDesktopSmall = [979, parent.data('desktop-small-items') ? parent.data('desktop-small-items') : 3];
+          itemsTablet = [768, parent.data('tablet-items') ? parent.data('tablet-items') : 2];
+          itemsMobile = [479, parent.data('mobile-items') ? parent.data('mobile-items') : 1];
+        }
+
+        $(el).owlCarousel({
+          items: items,
+          itemsDesktop: itemsDesktop,
+          itemsDesktopSmall: itemsDesktopSmall,
+          itemsTablet: itemsTablet,
+          itemsTabletSmall: itemsTabletSmall,
+          itemsMobile: itemsMobile,
+          navigation: !!parent.data('navigation'),
+          navigationText: false,
+          slideSpeed: parent.data('slide-speed'),
+          paginationSpeed: parent.data('pagination-speed'),
+          singleItem: !!parent.data('single-item'),
+          autoPlay: parent.data('auto-play')
+        });
+      });
+    }
+  }]);
+
+  return ObjectGalleryManagement;
+}();
+
+$(document).ready(function () {
+  new ObjectGalleryManagement().init();
+});
+/******/ })()
+;

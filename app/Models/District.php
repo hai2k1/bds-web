@@ -22,9 +22,9 @@ class District extends Model
         'city',
         'status',
     ];
-    protected $primaryKey ='id';
-    public function city() {
-        return $this->belongsTo(City::class,'city');
+    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(City::class,'city','code');
     }
     public function wards(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

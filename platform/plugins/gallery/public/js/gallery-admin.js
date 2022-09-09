@@ -1,1 +1,114 @@
-(()=>{"use strict";$(document).ready((function(){$(".btn_select_gallery").rvMedia({filter:"image",view_in:"all_media",onSelectFiles:function(t){var l=$(".list-photos-gallery .photo-gallery-item:last-child").data("id")+1;$.each(t,(function(e,a){$(".list-photos-gallery .row").append('<div class="col-md-2 col-sm-3 col-4 photo-gallery-item" data-id="'+(l+e)+'" data-img="'+a.url+'" data-description=""><div class="gallery_image_wrapper"><img src="'+a.thumb+'" alt="image"/></div></div>')})),e(),a(),$(".reset-gallery").removeClass("hidden")}});var e=function(){var e=document.getElementById("list-photos-items");e&&Sortable.create(e,{group:"galleries",sort:!0,delay:0,disabled:!1,store:null,animation:150,handle:".photo-gallery-item",ghostClass:"sortable-ghost",chosenClass:"sortable-chosen",dataIdAttr:"data-id",forceFallback:!1,fallbackClass:"sortable-fallback",fallbackOnBody:!1,scroll:!0,scrollSensitivity:30,scrollSpeed:10,onEnd:function(){a()}})};e();var a=function(){var e=[];$.each($(".photo-gallery-item"),(function(a,t){$(t).data("id",a),e.push({img:$(t).data("img"),description:$(t).data("description")})})),$("#gallery-data").val(JSON.stringify(e))},t=$(".list-photos-gallery"),l=$("#edit-gallery-item");$(".reset-gallery").on("click",(function(e){e.preventDefault(),$(".list-photos-gallery .photo-gallery-item").remove(),a(),$(this).addClass("hidden")})),t.on("click",".photo-gallery-item",(function(){var e=$(this).data("id");$("#delete-gallery-item").data("id",e),$("#update-gallery-item").data("id",e),$("#gallery-item-description").val($(this).data("description")),l.modal("show")})),l.on("click","#delete-gallery-item",(function(e){e.preventDefault(),l.modal("hide"),t.find(".photo-gallery-item[data-id="+$(this).data("id")+"]").remove(),a(),0===t.find(".photo-gallery-item").length&&$(".reset-gallery").addClass("hidden")})),l.on("click","#update-gallery-item",(function(e){e.preventDefault(),l.modal("hide"),t.find(".photo-gallery-item[data-id="+$(this).data("id")+"]").data("description",$("#gallery-item-description").val()),a()}))}))})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+/*!***********************************************************************!*\
+  !*** ./platform/plugins/gallery/resources/assets/js/gallery-admin.js ***!
+  \***********************************************************************/
+
+
+$(document).ready(function () {
+  $('.btn_select_gallery').rvMedia({
+    filter: 'image',
+    view_in: 'all_media',
+    onSelectFiles: function onSelectFiles(files) {
+      var last_index = $('.list-photos-gallery .photo-gallery-item:last-child').data('id') + 1;
+      $.each(files, function (index, file) {
+        $('.list-photos-gallery .row').append('<div class="col-md-2 col-sm-3 col-4 photo-gallery-item" data-id="' + (last_index + index) + '" data-img="' + file.url + '" data-description=""><div class="gallery_image_wrapper"><img src="' + file.thumb + '" alt="image"/></div></div>');
+      });
+      initSortable();
+      updateItems();
+      $('.reset-gallery').removeClass('hidden');
+    }
+  });
+
+  var initSortable = function initSortable() {
+    var el = document.getElementById('list-photos-items');
+
+    if (el) {
+      Sortable.create(el, {
+        group: 'galleries',
+        // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
+        sort: true,
+        // sorting inside list
+        delay: 0,
+        // time in milliseconds to define when the sorting should start
+        disabled: false,
+        // Disables the sortable if set to true.
+        store: null,
+        // @see Store
+        animation: 150,
+        // ms, animation speed moving items when sorting, `0` — without animation
+        handle: '.photo-gallery-item',
+        ghostClass: 'sortable-ghost',
+        // Class name for the drop placeholder
+        chosenClass: 'sortable-chosen',
+        // Class name for the chosen item
+        dataIdAttr: 'data-id',
+        forceFallback: false,
+        // ignore the HTML5 DnD behaviour and force the fallback to kick in
+        fallbackClass: 'sortable-fallback',
+        // Class name for the cloned DOM Element when using forceFallback
+        fallbackOnBody: false,
+        // Appends the cloned DOM Element into the Document's Body
+        scroll: true,
+        // or HTMLElement
+        scrollSensitivity: 30,
+        // px, how near the mouse must be to an edge to start scrolling.
+        scrollSpeed: 10,
+        // px
+        // dragging ended
+        onEnd: function onEnd() {
+          updateItems();
+        }
+      });
+    }
+  };
+
+  initSortable();
+
+  var updateItems = function updateItems() {
+    var items = [];
+    $.each($('.photo-gallery-item'), function (index, widget) {
+      $(widget).data('id', index);
+      items.push({
+        img: $(widget).data('img'),
+        description: $(widget).data('description')
+      });
+    });
+    $('#gallery-data').val(JSON.stringify(items));
+  };
+
+  var $listPhotos = $('.list-photos-gallery');
+  var $editGalleryItem = $('#edit-gallery-item');
+  $('.reset-gallery').on('click', function (event) {
+    event.preventDefault();
+    $('.list-photos-gallery .photo-gallery-item').remove();
+    updateItems();
+    $(this).addClass('hidden');
+  });
+  $listPhotos.on('click', '.photo-gallery-item', function () {
+    var id = $(this).data('id');
+    $('#delete-gallery-item').data('id', id);
+    $('#update-gallery-item').data('id', id);
+    $('#gallery-item-description').val($(this).data('description'));
+    $editGalleryItem.modal('show');
+  });
+  $editGalleryItem.on('click', '#delete-gallery-item', function (event) {
+    event.preventDefault();
+    $editGalleryItem.modal('hide');
+    $listPhotos.find('.photo-gallery-item[data-id=' + $(this).data('id') + ']').remove();
+    updateItems();
+
+    if ($listPhotos.find('.photo-gallery-item').length === 0) {
+      $('.reset-gallery').addClass('hidden');
+    }
+  });
+  $editGalleryItem.on('click', '#update-gallery-item', function (event) {
+    event.preventDefault();
+    $editGalleryItem.modal('hide');
+    $listPhotos.find('.photo-gallery-item[data-id=' + $(this).data('id') + ']').data('description', $('#gallery-item-description').val());
+    updateItems();
+  });
+});
+/******/ })()
+;

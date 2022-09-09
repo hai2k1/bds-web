@@ -13,7 +13,7 @@
         "ext-gd": "*",
         "ext-json": "*",
         "ext-zip": "*",
-        "asantibanez/livewire-calendar": "^2.1",
+        "asantibanez/livewire-calendar": "*",
         "binaryk/laravel-restify": "*",
         "botble/api": "*@dev",
         "botble/menu": "*@dev",
