@@ -2,21 +2,24 @@
 
 namespace App\Restify;
 
-use Binaryk\LaravelRestify\Fields\Field;
+use App\Models\User;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class UserRepository extends Repository
 {
-    public static $model = 'App\\Models\\User';
+    public static  $model = User::class;
 
     public function fields(RestifyRequest $request): array
     {
         return [
-            Field::make('name')->rules('required'),
+            field('first_name')->rules('required'),
+            field('last_name')->rules('required'),
+            field('avatar_id')->rules('required'),
+            field('super_user')->rules('required'),
+            field('manage_supers')->rules('required'),
+            field('phone')->rules('required'),
 
-            Field::make('email')->storingRules('required', 'unique:users')->messages([
+            field('email')->storingRules('required', 'unique:users')->messages([
                 'required' => 'This field is required.',
             ]),
         ];

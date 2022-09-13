@@ -28,7 +28,7 @@
         "botble/slug": "*@dev",
         "botble/theme": "*@dev",
         "botble/widget": "*@dev",
-        "doctrine/dbal": "^3.2",
+        "doctrine/dbal": "^3.4",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.1",
         "guzzlehttp/guzzle": "^7.2",

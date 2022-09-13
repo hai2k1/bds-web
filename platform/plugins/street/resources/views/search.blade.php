@@ -10,18 +10,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
     $('#city').on('change', function () {
-    var url = "{{route('street.getstreet')}}";
-        $.get(url,$("#city" ).val())
-        .done(function( data ) {
-            let text = "";
-            const entries = Object.entries(data);
-            entries.forEach(element => {
-                console.log(element);
-                text +=`
+        var url = "{{route('street.getstreet')}}";
+        $.get(url, $("#city").val())
+            .done(function (data) {
+                let text = "";
+                const entries = Object.entries(data);
+                entries.forEach(element => {
+
+                    text += `
                         <option value="${element[0]}">${element[1]}</option>
-                        `; 
+                    `;
+                });
+                document.getElementById("district").innerHTML = text;
             });
-            document.getElementById("district").innerHTML = text;
-        });   
-    });   
+    });
 </script>

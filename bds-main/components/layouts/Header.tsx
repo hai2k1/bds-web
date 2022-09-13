@@ -12,7 +12,7 @@ import { RenderPopUp } from '../renderHeader';
 
 
 const cities=new Array(120).fill({
-    name:"Hồ Chí Minh" 
+    name:"Hồ Chí Minh"
 })
 
 
@@ -21,17 +21,13 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const { ref, isComponentVisible,setIsComponentVisible } = useBlur(false);
     const authState = useSelector(selectAuthState);
     const dispatch = useDispatch();
-
     const [patnName,setPathName]=useState<boolean>(true)
-
-  
     const [change,setChange]= useState('')
     const [popUp,setPopUp] = useState<number>(1) //change pop khu vực
     const [city,setCity]=useState<string>('')
     const [district,setDistrict]=useState<string>('')
     const [ward,setWard]=useState<string>('')
     const [location,setLocation]=useState<string>('')
-
     useEffect(()=>{
         const setPath=()=>{
             if(router.pathname==='/'){
@@ -43,37 +39,32 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             }else{
                 setPathName(false)
             }
-            
+
         }
         setPath()
     },[router])
     const handleClick=()=>{
         setIsComponentVisible(!isComponentVisible)
- 
- 
     }
-    
     const submitLogout=()=>{
-        
         dispatch(setAuthState(false))
         setIsComponentVisible(false)
     }
-
     const naviGate=(link:string)=>{
         router.push(link)
     }
     const resetFilter=()=>{
         router.push('/query/1')
     }
+
     return(
-   
         <header
             {...headerProps}
             className={`w-full fixed bg-white  flex flex-col px-10 justify-center  items-center p-5 shadow z-[80] select-none `}
         >
             <div className=" w-9/12 flex bigger:w-7/12 items-center justify-between ">
-                
-                <div className="flex  w-1/2  space-x-4  ">
+
+                <div className="flex  w-2/3  space-x-4  ">
                     <Link href="/" >
                         <a className="w-[15rem] h-[3rem]">
                             <div className="w-full h-full relative " >
@@ -82,12 +73,11 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                         </a>
                     </Link>
                     <label className="relative laptop:hidden">
-                        <input 
-                            className=" 
-                                w-full 
-                                  
-                                bg-white rounded-3xl pl-3 py-2 pr-10
-                                shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
+                        <input
+                            className="
+                                w-full
+                                bg-white rounded-3xl pl-3 py-3 pr-10
+                                shadow-sm focus:outline-none focus:border-sky-500 w-full focus:ring-sky-500 focus:ring-1
                                 border border-slate-300 "
                             placeholder="Tìm kiếm khu vực,dự án"
                             type="text"
@@ -102,28 +92,28 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                 </div>
                 <div  className={`  cardInfo navBarButton `}>
                     <div className="flex  w-full items-center font-medium gap-3">
-                     
+
                             <div  className="flex rounded-lg items-center justify-center">
-                                
+
                                     <a >
-                                        <div  className="w-6 h-6 relative">
+                                        <div  className="w-6 h-6 me-3 relative">
                                             <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/favorite-desktop.svg"  className="w-6 h-full "/>
                                         </div>
                                     </a>
-                                
+
                             </div>
                             {authState && <div  className="flex  rounded-lg items-center justify-center">
-                                
+
                                     <a >
-                                        <div  className="w-6 h-6 relative">
+                                        <div  className="w-6 h-6 me-3 ms-3 relative">
                                             <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/notification.svg"  className="w-6 h-full "/>
                                         </div>
                                     </a>
-                                
+
                             </div>}
-                      
-                        {!authState ? 
-                            
+
+                        {!authState ?
+
                             <>
                             <div className="flex flex-shrink rounded-lg  items-center justify-center">
                                 <Link href="/register">
@@ -138,32 +128,32 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                             </>
                             :
                             <>
-                          
+
                             <div  className='flex space-x-2 h-full  items-center relative'>
                                 <div className="flex items-center w-6 space-x-4 h-full ">
                                     <div className="relative   w-auto auto">
                                         <div  className="w-6 h-6 rounded-full p-1 ring-2 ring-sky-300    overflow-hidden relative">
                                             <Image width="100%" height="100%" layout="fill"   objectFit="contain"
-                                                
-                                                src="/user-toolbar-footer.svg" 
-                                            /> 
+
+                                                src="/user-toolbar-footer.svg"
+                                            />
                                         </div>
-                                       
+
                                         <span className="-bottom-1 -right-1 bg-green-400 absolute h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800"></span>
                                     </div>
                                 </div>
-                     
+
                                 <div  className="labelDrop  relative group " ref={ref}>
-                                  
+
                                         <div className="w-fit flex items-center">
                                             <button onClick={handleClick} className="flex items-center truncate ">Nguyễn Văn Nam
-                                                
+
                                             </button>
                                             <div className="cursor-pointer h-4 w-3 ml-2 relative" onClick={handleClick} >
                                                 <Image width="100%" height="100%" layout="fill" objectFit="contain"    src="/down_button_black.svg" className="cursor-pointer h-4 w-3 ml-2"/>
                                             </div>
-                                        </div> 
-                                     
+                                        </div>
+
                                         {isComponentVisible &&<div  className={`dropbackground w-[350px] rounded-lg   block"}`}>
                                             <div  className="py-4 px-4 text-sm h-[130px]  text-gray-700 dark:text-gray-200">
                                                    <div className="w-full h-full flex  justify-between gap-2 ">
@@ -185,9 +175,9 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                                             </div>
                                                             <div className="text-lg font-semibold">0 tin</div>
                                                         </div>
-                                                     
+
                                                    </div>
-                               
+
                                             </div>
                                             <div className="dropItem">
                                                 <div onClick={submitLogout} className="w-full">Quản lí tin đăng</div>
@@ -211,17 +201,12 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                                 <div onClick={submitLogout} className="w-full">Đăng xuất</div>
                                             </div>
                                         </div>}
-                                        
-                                   
-                                     
-                                      
-                                 
                                 </div>
-                             
-                            
+
+
                             </div>
                             </>
-                            
+
                         }
                         <div className="flex  bg-pink-700 rounded-lg  items-center justify-center">
                             <Link href="/upload">
@@ -238,17 +223,17 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                     </div>
                 </div>
             </div>
-            {patnName  && 
+            {patnName  &&
                 <div className="w-9/12 bigger:w-7/12 flex flex-row  pt-7  items-center flex-wrap gap-2 ">
-                    
-                    
-                
+
+
+
                     {/*chọn location*/}
                     <RenderPopUp label="Toàn quốc" className="w-[9rem]" page="Chọn khu vực" img="/khu_vuc.svg">
                         <div className="w-full  bg-slate-50 flex flex-col  items-center     rounded-lg ">
                             {/*slug*/}
                             <div className="w-full flex  px-5 pt-1 gap-3  bg-white">
-                                {popUp===1 ? 
+                                {popUp===1 ?
                                     <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
                                         <p className="text-purple-600">Tỉnh/Thành</p>
                                     </div>
@@ -257,7 +242,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                         <p>Tỉnh/Thành</p>
                                     </div>
                                 }
-                                {popUp===2 ? 
+                                {popUp===2 ?
                                     <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
                                         <p className="text-purple-600">Quận/Huyện</p>
                                     </div>
@@ -266,7 +251,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                         <p>Quận/Huyện</p>
                                     </div>
                                 }
-                                {popUp===3 ? 
+                                {popUp===3 ?
                                     <div  className="cursor-pointer border-solid border-b-[1px] border-purple-600">
                                         <p className="text-purple-600">Phường/Xã</p>
                                     </div>
@@ -275,193 +260,193 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                         <p>Phường/Xã</p>
                                     </div>
                                 }
-                        
+
                             </div>
                             {/* body */}
                            <div className={`${popUp===1 ? "flex" :"hidden"} w-full  flex-col   p-5 bg-white rounded-b-lg `}>
                                 <div className=" w-full flex flex-col  space-y-4  ">
-                                    
+
                                     <div className="relative w-full">
                                         <input   placeholder="Chọn Tỉnh/Thành" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
-                                            className="              
+                                            className="
                                                 w-full text-placeholder
-                                                placeholder:text-slate-400  
+                                                placeholder:text-slate-400
                                                 bg-gray-100 pl-9 py-2 pr-10
                                                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                                                 border border-slate-300 rounded-lg"
                                                 />
-                                        
-                                        <button type="button" 
-                                            
+
+                                        <button type="button"
+
                                             className={`absolute z-[4] top-2 left-2 flex  items-center`}>
                                             <div className="w-6 h-7 relative">
                                                 <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
                                             </div>
-                                        
+
                                         </button>
                                     </div>
                                     <div className="overflow-y-auto h-[50vh]    w-full relative ">
                                         <ul className=" p-2 grid gap-1 ">
-                                     
+
                                             {cities.map((item:any,index:any):any=>{
                                                 return(
                                                     <Fragment key={index}>
-                                                        <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                                        <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                                         >
                                                             <input type="radio" id={"du_an"+index} name="du_an" className=" appearance-none
-                                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                                    border-[2px] border-gray-300  w-4 h-4
                                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                             <label htmlFor={"du_an"+index} className='font-[500] cursor-pointer w-full  py-2'>
                                                                 {item.name}
-                                                            
+
                                                                 <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
                                                                     <div className="w-4 h-7 relative -rotate-90 opacity-50">
                                                                         <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
                                                                     </div>
                                                                 </div>
                                                             </label>
-                                                            
+
                                                         </li>
                                                         <div className=" h-px bg-gray-200 "></div>
-                                            
+
                                                     </Fragment>
                                                 )
                                             })}
-                                                
-                                            
+
+
                                         </ul>
-                                
-                                    
-                                    
-                                
-                                    
+
+
+
+
+
                                     </div>
                                 </div>
                             </div>
                             <div className={`${popUp===2 ? "flex" :"hidden"} w-full  flex-col   p-5 bg-white rounded-b-lg `}>
                                 <div className=" w-full flex flex-col  space-y-4  ">
-                                    
+
                                     <div className="relative w-full">
                                         <input   placeholder="Chọn Quận/Huyện" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
-                                            className="              
+                                            className="
                                                 w-full text-placeholder
-                                                placeholder:text-slate-400  
+                                                placeholder:text-slate-400
                                                 bg-gray-100 pl-9 py-2 pr-10
                                                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                                                 border border-slate-300 rounded-lg"
                                                 />
-                                        
-                                        <button type="button" 
-                                            
+
+                                        <button type="button"
+
                                             className={`absolute z-[4] top-2 left-2 flex  items-center`}>
                                             <div className="w-6 h-7 relative">
                                                 <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
                                             </div>
-                                        
+
                                         </button>
                                     </div>
                                     <div className="overflow-y-auto h-[50vh]    w-full relative ">
                                     <ul className=" p-2 grid gap-1 ">
-                                     
+
                                         {cities.map((item:any,index:any):any=>{
                                             return(
                                                 <Fragment key={index}>
-                                                    <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                                    <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                                     >
                                                         <input type="radio" id={"du_an"+index} name="du_an" className=" appearance-none
-                                                                border-[2px] border-gray-300  w-4 h-4 
+                                                                border-[2px] border-gray-300  w-4 h-4
                                                                 check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                                 checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                         <label htmlFor={"du_an"+index} className='font-[500] cursor-pointer w-full  py-2'>
                                                             {item.name}
-                                                        
+
                                                             <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
                                                                 <div className="w-4 h-7 relative -rotate-90 opacity-50">
                                                                     <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
                                                                 </div>
                                                             </div>
                                                         </label>
-                                                        
+
                                                     </li>
                                                     <div className=" h-px bg-gray-200 "></div>
-                                        
+
                                                 </Fragment>
                                             )
                                         })}
-                                            
-                                       
+
+
                                     </ul>
-                                
-                                    
-                                    
-                                
-                                    
+
+
+
+
+
                                     </div>
                                 </div>
                             </div>
                             <div className={`${popUp===3 ? "flex" :"hidden"} w-full  flex-col   p-5 bg-white rounded-b-lg `}>
                                 <div className=" w-full flex flex-col  space-y-4  ">
-                                    
+
                                     <div className="relative w-full">
                                         <input   placeholder="Chọn Phường/Xã" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
-                                            className="              
+                                            className="
                                                 w-full text-placeholder
-                                                placeholder:text-slate-400  
+                                                placeholder:text-slate-400
                                                 bg-gray-100 pl-9 py-2 pr-10
                                                 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                                                 border border-slate-300 rounded-lg"
                                                 />
-                                        
-                                        <button type="button" 
-                                            
+
+                                        <button type="button"
+
                                             className={`absolute z-[4] top-2 left-2 flex  items-center`}>
                                             <div className="w-6 h-7 relative">
                                                 <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
                                             </div>
-                                        
+
                                         </button>
                                     </div>
                                     <div className="overflow-y-auto h-[50vh]    w-full relative ">
                                     <ul className=" p-2 grid gap-1 ">
-                                     
+
                                         {cities.map((item:any,index:any):any=>{
                                             return(
                                                 <Fragment key={index}>
-                                                    <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                                    <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                                     >
                                                         <input type="radio" id={"du_an"+index} name="du_an" className=" appearance-none
-                                                                border-[2px] border-gray-300  w-4 h-4 
+                                                                border-[2px] border-gray-300  w-4 h-4
                                                                 check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                                 checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                         <label htmlFor={"du_an"+index} className='font-[500] cursor-pointer w-full  py-2'>
                                                             {item.name}
-                                                        
+
                                                             <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
                                                                 <div className="w-4 h-7 relative -rotate-90 opacity-50">
                                                                     <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
                                                                 </div>
                                                             </div>
                                                         </label>
-                                                        
+
                                                     </li>
                                                     <div className=" h-px bg-gray-200 "></div>
-                                        
+
                                                 </Fragment>
                                             )
                                         })}
-                                            
-                                       
+
+
                                     </ul>
-                                
-                                    
-                                    
-                                
-                                    
+
+
+
+
+
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </RenderPopUp>
 
                     {/*chọn prices*/}
@@ -471,11 +456,11 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                         initialMin={0}
                                         initialMax={2000}
                                         min={0}
-                                        max={2000} 
+                                        max={2000}
                                         step={100}
                                         priceGap={100}
                                         label="Từ 0 - 50 triệu"
-                                />  
+                                />
                                 <div className="h-[50vh] relative">
                                     <div>
                                         <div className="flex items-center gap-1">
@@ -485,10 +470,10 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                     </div>
                                     <ul className="p-2 grid grid-cols-3 ">
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                          text-base relative cursor-pointer  hover:text-purple-500  "
                                         >
                                             <input type="radio" id="0."  name="prices" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="0." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
@@ -496,117 +481,117 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                             </label>
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                          text-base relative cursor-pointer  hover:text-purple-500  "
                                         >
                                             <input type="radio" id="1."  name="prices" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="1." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 Dưới 3 triệu
-                                            </label>    
+                                            </label>
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                          text-base relative cursor-pointer  hover:text-purple-500  "
                                         >
                                             <input type="radio" id="2."  name="prices" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="2." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 3 - 5 triệu
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="3."  name="prices" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="3." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 5 - 7 triệu
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="4."  name="prices" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="4." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 7 - 10 triệu
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="5."  name="prices" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="5." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 10 - 15 triệu
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="6."  name="prices" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="6." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 15 - 30 triệu
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="7."  name="prices" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="7." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 30 - 50 triệu
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="8."  name="prices" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="8." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 Trên 50 triệu
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="9."  name="prices" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="9." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 Thỏa thuận
                                             </label>
-                                            
+
                                         </li>
-                                        
-                                      
-                                        
-                                       
-                                    </ul> 
+
+
+
+
+                                    </ul>
                                    <div className="absolute bottom-0 w-full">
                                             <button className="w-full  text-white font-semibold rounded-full p-2 bg-pink-500">Áp dụng</button>
                                    </div>
@@ -621,7 +606,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                     initialMin={0}
                                     initialMax={2100}
                                     min={0}
-                                    max={2100} 
+                                    max={2100}
                                     step={105}
                                     priceGap={106}
                                     label="Từ 0 - 500 m2"
@@ -635,10 +620,10 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                     </div>
                                     <ul className="p-2 grid grid-cols-3 ">
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                          text-base relative cursor-pointer  hover:text-purple-500  "
                                         >
                                             <input type="radio" id="0."  name="areas" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="0." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
@@ -646,117 +631,117 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                             </label>
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                          text-base relative cursor-pointer  hover:text-purple-500  "
                                         >
                                             <input type="radio" id="1.."  name="areas" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="1.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 Dưới 30 m<sup>2</sup>
-                                            </label>    
+                                            </label>
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500  " 
+                                          text-base relative cursor-pointer  hover:text-purple-500  "
                                         >
                                             <input type="radio" id="2.."  name="areas" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="2.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 30 - 50 m<sup>2</sup>
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="3.."  name="areas" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="3.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 50 - 70 m<sup>2</sup>
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="4.."  name="areas" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="4.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 70 - 100 m<sup>2</sup>
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="5.."  name="areas" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="5.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 100 - 150 m<sup>2</sup>
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="6.."  name="areas" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="6.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 150 - 200 m<sup>2</sup>
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="7.."  name="areas" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="7.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 200 - 300 m<sup>2</sup>
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="8.."  name="areas" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="8.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 300 - 500 m<sup>2</sup>
                                             </label>
-                                            
+
                                         </li>
                                         <li className=" flex items-center gap-2
-                                          text-base relative cursor-pointer  hover:text-purple-500 " 
+                                          text-base relative cursor-pointer  hover:text-purple-500 "
                                         >
                                             <input type="radio" id="9.."  name="areas" className=" appearance-none
-                                                    border-[2px] border-gray-300  w-4 h-4 
+                                                    border-[2px] border-gray-300  w-4 h-4
                                                     check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                     checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                             <label htmlFor="9.." className='font-[500] text-[15px] cursor-pointer w-full  py-2'>
                                                 Trên 500 m<sup>2</sup>
                                             </label>
-                                            
+
                                         </li>
-                                        
-                                      
-                                        
-                                       
-                                    </ul> 
+
+
+
+
+                                    </ul>
                                     <div className="absolute bottom-0 w-full">
                                         <button className="w-full  text-white font-semibold rounded-full p-2 bg-pink-500">Áp dụng</button>
                                    </div>
@@ -775,65 +760,65 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                     </div>
                                 </div>
                                 <ul className="py-2 grid grid-cols-1 gap-3">
-                                    <li className=" flex items-center gap-2 
-                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 " 
+                                    <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 "
                                     >
                                         <input type="checkbox" id="0...."  name="room" className=" appearance-none
-                                                border-[2px] border-gray-300  w-5 h-5 rounded-md 
+                                                border-[2px] border-gray-300  w-5 h-5 rounded-md
                                                  text-purple-500 bg-white focus:ring-purple-500
                                                 checked:border-none  checked:!bg-purple-500  peer"/>
                                         <label htmlFor="0...." className='font-[500] text-[15px] cursor-pointer w-full peer-checked:font-bold  py-2'>
                                             1 phòng ngủ
                                         </label>
-                                            
+
                                     </li>
-                                    <li className=" flex items-center gap-2 
-                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 " 
+                                    <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 "
                                     >
                                         <input type="checkbox" id="1...."  name="room" className=" appearance-none
-                                                border-[2px] border-gray-300  w-5 h-5 rounded-md 
+                                                border-[2px] border-gray-300  w-5 h-5 rounded-md
                                                  text-purple-500 bg-white focus:ring-purple-500
                                                 checked:border-none  checked:!bg-purple-500  peer"/>
                                         <label htmlFor="1...." className='font-[500] text-[15px] cursor-pointer w-full peer-checked:font-bold  py-2'>
                                             2 phòng ngủ
                                         </label>
-                                            
+
                                     </li>
-                                    <li className=" flex items-center gap-2 
-                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 " 
+                                    <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 "
                                     >
                                         <input type="checkbox" id="2...."  name="room" className=" appearance-none
-                                                border-[2px] border-gray-300  w-5 h-5 rounded-md 
+                                                border-[2px] border-gray-300  w-5 h-5 rounded-md
                                                  text-purple-500 bg-white focus:ring-purple-500
                                                 checked:border-none  checked:!bg-purple-500  peer"/>
                                         <label htmlFor="2...." className='font-[500] text-[15px] cursor-pointer w-full peer-checked:font-bold  py-2'>
                                             3 phòng ngủ
                                         </label>
-                                            
+
                                     </li>
-                                    <li className=" flex items-center gap-2 
-                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 " 
+                                    <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 "
                                     >
                                         <input type="checkbox" id="3...."  name="room" className=" appearance-none
-                                                border-[2px] border-gray-300  w-5 h-5 rounded-md 
+                                                border-[2px] border-gray-300  w-5 h-5 rounded-md
                                                  text-purple-500 bg-white focus:ring-purple-500
                                                 checked:border-none  checked:!bg-purple-500  peer"/>
                                         <label htmlFor="3...." className='font-[500] text-[15px] cursor-pointer w-full peer-checked:font-bold  py-2'>
                                             4 phòng ngủ
                                         </label>
-                                            
+
                                     </li>
-                                    <li className=" flex items-center gap-2 
-                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 " 
+                                    <li className=" flex items-center gap-2
+                                          text-base relative cursor-pointer bg-sky-50 border-gray-100 border-solid border-[2px] rounded-lg px-3 hover:text-purple-500 "
                                     >
                                         <input type="checkbox" id="4...."  name="room" className=" appearance-none
-                                                border-[2px] border-gray-300  w-5 h-5 rounded-md 
+                                                border-[2px] border-gray-300  w-5 h-5 rounded-md
                                                  text-purple-500 bg-white focus:ring-purple-500
                                                 checked:border-none  checked:!bg-purple-500  peer"/>
                                         <label htmlFor="4...." className='font-[500] text-[15px] cursor-pointer w-full peer-checked:font-bold  py-2'>
                                             5+ phòng ngủ
                                         </label>
-                                            
+
                                     </li>
                                 </ul>
 
@@ -847,62 +832,62 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                     {/*chọn du_an*/}
                     <RenderPopUp label="Dự án" page="Dự án" className="w-[5rem]" filter={true}>
                         <div className="w-full  space-y-8 flex flex-col  p-5  bg-white rounded-b-lg ">
-                            
+
                             <div className=" w-full flex flex-col  space-y-4  ">
                                 <div className="relative w-full">
                                     <input   placeholder="Tìm dự án" type="text" onChange={e => setChange(e.target.value)}  value={change} autoComplete="off"
-                                        className="              
+                                        className="
                                             w-full text-placeholder
-                                            placeholder:text-slate-400  
+                                            placeholder:text-slate-400
                                             bg-gray-100 pl-9 py-2 pr-10
                                             shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1
                                             border border-slate-300 rounded-lg"
                                             />
-                                    
-                                    <button type="button" 
-                                        
+
+                                    <button type="button"
+
                                         className={`absolute z-[4] top-2 left-2 flex  items-center`}>
                                         <div className="w-6 h-7 relative">
                                             <Image  layout="fill" objectFit="contain"   src="/search_grey.svg" />
                                         </div>
-                                    
+
                                     </button>
                                 </div>
                                 <div className="overflow-y-auto h-[50vh]    w-full relative ">
                                     <ul className=" p-2 grid gap-1 ">
-                                     
+
                                         {cities.map((item:any,index:any):any=>{
                                             return(
                                                 <Fragment key={index}>
-                                                    <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                                    <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                                     >
                                                         <input type="radio" id={"du_an"+index} name="du_an" className=" appearance-none
-                                                                border-[2px] border-gray-300  w-4 h-4 
+                                                                border-[2px] border-gray-300  w-4 h-4
                                                                 check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                                 checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                         <label htmlFor={"du_an"+index} className='font-[500] cursor-pointer w-full  py-2'>
                                                             {item.name}
-                                                        
+
                                                             <div className={` absolute z-[4] top-2 right-2 flex  items-center`}>
                                                                 <div className="w-4 h-7 relative -rotate-90 opacity-50">
                                                                     <Image  layout="fill" objectFit="contain"   src="/down_button_black.svg" />
                                                                 </div>
                                                             </div>
                                                         </label>
-                                                        
+
                                                     </li>
                                                     <div className=" h-px bg-gray-200 "></div>
-                                        
+
                                                 </Fragment>
                                             )
                                         })}
-                                            
-                                       
+
+
                                     </ul>
                                 </div>
                             </div>
-                       
-                        </div>               
+
+                        </div>
                     </RenderPopUp>
 
                     {/*loại hình căn hộ*/}
@@ -912,105 +897,105 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                 <div className="overflow-y-auto h-[60vh]    w-full relative ">
                                     <ul className=" p-2 grid gap-1 ">
                                         <Fragment >
-                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                             >
                                                 <input type="radio" id={"TypeOfApartment"+0} name="TypeOfApartment" className=" appearance-none
-                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        border-[2px] border-gray-300  w-4 h-4
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                 <label htmlFor={"TypeOfApartment"+0} className='font-[500] cursor-pointer w-full  py-2'>
                                                     Tất cả
                                                 </label>
-                                                
+
                                             </li>
                                             <div className=" h-px bg-gray-200 "></div>
 
-                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                             >
                                                 <input type="radio" id={"TypeOfApartment"+1} name="TypeOfApartment" className=" appearance-none
-                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        border-[2px] border-gray-300  w-4 h-4
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                 <label htmlFor={"TypeOfApartment"+1} className='font-[500] cursor-pointer w-full  py-2'>
                                                     Chung cư
                                                 </label>
-                                                
+
                                             </li>
                                             <div className=" h-px bg-gray-200 "></div>
 
-                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                             >
                                                 <input type="radio" id={"TypeOfApartment"+2} name="TypeOfApartment" className=" appearance-none
-                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        border-[2px] border-gray-300  w-4 h-4
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                 <label htmlFor={"TypeOfApartment"+2} className='font-[500] cursor-pointer w-full  py-2'>
                                                     Duplex
                                                 </label>
-                                                
+
                                             </li>
                                             <div className=" h-px bg-gray-200 "></div>
 
-                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                             >
                                                 <input type="radio" id={"TypeOfApartment"+3} name="TypeOfApartment" className=" appearance-none
-                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        border-[2px] border-gray-300  w-4 h-4
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                 <label htmlFor={"TypeOfApartment"+3} className='font-[500] cursor-pointer w-full  py-2'>
                                                     Penthouse
                                                 </label>
-                                                
+
                                             </li>
                                             <div className=" h-px bg-gray-200 "></div>
 
-                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                             >
                                                 <input type="radio" id={"TypeOfApartment"+4} name="TypeOfApartment" className=" appearance-none
-                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        border-[2px] border-gray-300  w-4 h-4
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                 <label htmlFor={"TypeOfApartment"+4} className='font-[500] cursor-pointer w-full  py-2'>
                                                     Căn hộ dịch vụ, mini
                                                 </label>
-                                                
+
                                             </li>
                                             <div className=" h-px bg-gray-200 "></div>
 
-                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                             >
                                                 <input type="radio" id={"TypeOfApartment"+5} name="TypeOfApartment" className=" appearance-none
-                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        border-[2px] border-gray-300  w-4 h-4
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                 <label htmlFor={"TypeOfApartment"+5} className='font-[500] cursor-pointer w-full  py-2'>
                                                    Tập thể, cư xá
                                                 </label>
-                                                
+
                                             </li>
                                             <div className=" h-px bg-gray-200 "></div>
 
-                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg" 
+                                            <li className=" flex  items-center gap-2  text-base relative cursor-pointer  hover:text-purple-500 hover:bg-gray-200 hover:rounded-lg"
                                             >
                                                 <input type="radio" id={"TypeOfApartment"+6} name="TypeOfApartment" className=" appearance-none
-                                                        border-[2px] border-gray-300  w-4 h-4 
+                                                        border-[2px] border-gray-300  w-4 h-4
                                                         check-shadow text-purple-500 bg-white focus:ring-purple-500
                                                         checked:border-purple-500 checked:!bg-purple-500  checked:check-shadow "/>
                                                 <label htmlFor={"TypeOfApartment"+6} className='font-[500] cursor-pointer w-full  py-2'>
                                                    Officetel
                                                 </label>
-                                                
+
                                             </li>
                                             <div className=" h-px bg-gray-200 "></div>
-                                
+
                                         </Fragment>
                                     </ul>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </RenderPopUp>
-            
-                    
+
+
                     {/*lọc thêm*/}
                     <RenderPopUp label="Lọc thêm" page="Lọc thêm" className="w-[5.75rem]" filter={true} img="/fillter-black.svg">
                         <div className="w-full  space-y-8 flex flex-col  p-5 pt-0 bg-white rounded-b-lg ">
@@ -1089,7 +1074,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                         </div>
                                     </div>
                                     <div className=" h-px bg-gray-200 "></div>
-                                    
+
                                     <div className="space-y-3 py-4">
                                         <p className="font-semibold  text-[14px]">Hướng cửa chính</p>
                                         <div className="gap-x-2 gap-y-4 flex flex-wrap select-none w-full">
@@ -1228,7 +1213,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                                     <p>Tin có video</p>
                                                 </label>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                     <div className=" h-px bg-gray-200 "></div>
@@ -1248,7 +1233,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                                     <p>Cá nhân</p>
                                                 </label>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                     <div className=" h-px bg-gray-200 "></div>
@@ -1298,7 +1283,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                                     <p>30 ngày</p>
                                                 </label>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
 
@@ -1308,28 +1293,28 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                         <button className="w-full  text-white font-semibold rounded-full p-2 bg-pink-500">Áp dụng</button>
                                     </div>
 
-                                    
+
 
 
                                 </div>
                             </div>
                         </div>
                     </RenderPopUp>
-        
+
                     <div className="h-full flex flex-shrink">
-                       
-                        <button onClick={resetFilter} className="  btn-primary flex border-gray-400 "> 
+
+                        <button onClick={resetFilter} className="  btn-primary flex border-gray-400 ">
                             <div  className="h-5 w-5 mr-2 relative">
                                 <Image width="100%" height="100%" layout="fill" objectFit="contain"  src="/reset_fillter.svg" className="h-5 w-5 mr-2"/>
                             </div>
-                        Đặt lại</button> 
+                        Đặt lại</button>
                     </div>
-                               
+
                 </div>
             }
-            
-        
-        </header>  
+
+
+        </header>
     )
 }
 export default Header;

@@ -6,11 +6,12 @@ import { NextPageWithLayout } from '../page';
 
 
 import dynamic from 'next/dynamic';
+import {useEffect} from "react";
 const PrimaryLayout=  dynamic(() => import('../components/layouts/PrimaryLayout'),{ssr:false})
 const HomeDesktop = dynamic(() => import('./desktop/HomeDesktop'),{ssr:false})
 
 const Home: NextPageWithLayout = (props) => {
- 
+
   return (
     <>
     <Device desktop>

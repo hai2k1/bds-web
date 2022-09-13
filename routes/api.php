@@ -10,8 +10,11 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+use App\Http\Controllers\Restify\Auth\LogoutController;
+use App\Http\Controllers\Restify\Auth\RegisterController;
+
 Route::restifyAuth();
-Route::get('test',function (){
-    $user= \App\Models\Wards::with('ListDistrict')->get();
-    return response()->json($user);
-});
+Route::post('register',RegisterController::class);
+Route::get('logout',LogoutController::class);

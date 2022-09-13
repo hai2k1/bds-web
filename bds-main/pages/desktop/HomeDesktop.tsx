@@ -2,7 +2,7 @@
 import { Carousel } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { data } from '../../fakedata';
 import useDevice from '../../hooks/useDevice';
 import type { HomeDesktopProps } from '../../interfaces/interfaces';
@@ -15,73 +15,64 @@ const CardHome2=  dynamic(() => import('../../components/cards/card2'),{ssr:fals
 const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
     const {isMobile} =useDevice()
     const [moretext,setMoreText]=useState(false)
-    
+    const [Cities,SetCities] = useState([])
     const moreText=()=>{
         setMoreText(!moretext)
     }
-
-   
-    
-    
-    
     return(
         <div className="flex flex-col mt-[4.5rem] tablet:mt-3 justify-center placeholder-red-500 mb-8 ">
             {!isMobile &&<div className="home-row tablet:hidden ">
                 <div className="w-9/12 bigger:w-7/12">
-                   
+
                     <div className="h-56 laptop:h-40 ">
-                       
+
                         <Carousel slideInterval={5000} indicators={true}>
                             <div className=" h-full relative">
-                                <Image width="100%" height="100%" layout="fill" objectFit="contain" 
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"
                                 src="/banner.png"
                                 alt="..."
                                 />
                             </div>
                             <div className=" h-full relative">
-                                <Image width="100%" height="100%" layout="fill" objectFit="contain" 
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"
                                 src="/banner.png"
                                 alt="..."
                                 />
                             </div>
                             <div className=" h-full relative">
-                                <Image width="100%" height="100%" layout="fill" objectFit="contain" 
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"
                                 src="/banner.png"
                                 alt="..."
                                 />
                             </div>
                             <div className=" h-full relative">
-                                <Image width="100%" height="100%" layout="fill" objectFit="contain" 
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"
                                 src="/banner.png"
                                 alt="..."
                                 />
                             </div>
                             <div className=" h-full relative">
-                                <Image width="100%" height="100%" layout="fill" objectFit="contain" 
+                                <Image width="100%" height="100%" layout="fill" objectFit="contain"
                                 src="/banner.png"
                                 alt="..."
                                 />
                             </div>
-                         
-                            
+
+
                         </Carousel>
                     </div>
- 
+
                 </div>
             </div>}
-            
-      
-     
-    
             <div className="home-row">
                 <div className="w-9/12 text-center tablet:w-full tablet:text-left bigger:w-7/12">
-                    <h1 className="font-bold">Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h1>
-                    <p className="text-sm text-left">Cho thuê căn hộ chung cư mini: Giá rẻ, chất lượng, chính chủ, đầy đủ nội thất, an ninh đảm bảo. Đăng tin cho thuê căn hộ hiệu quả với 1.000.000+ truy cập mỗi tháng</p>
+                    <h1 className="font-bold mb-4">Cho thuê căn hộ chung cư giá rẻ, chính chủ, mới nhất T7/2022</h1>
+                    <p className="text-sm text-center">Cho thuê căn hộ chung cư mini: Giá rẻ, chất lượng, chính chủ, đầy đủ nội thất, an ninh đảm bảo. Đăng tin cho thuê căn hộ hiệu quả với 1.000.000+ truy cập mỗi tháng</p>
                 </div>
             </div>
-            
-            <div className="home-row "> 
-                <div className="w-9/12 space-y-4  tablet:w-full bigger:w-7/12  "> 
+
+            <div className="home-row ">
+                <div className="w-9/12 space-y-4  tablet:w-full bigger:w-7/12  ">
                     <div className="flex flex-row items-center space-x-2">
                         <div className="relative h-5 w-5">
                             <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/apartment_home.svg"  className="w-5 h-5"/>
@@ -93,25 +84,25 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                             <div className=" flex-[5_1_0%] ">
                                 <div className=" flex space-x-5  h-full">
                                     <div className="w-[45%]  h-full rounded-md relative">
-                                        
+
                                         <Image  layout="fill" src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
-                                     
+
                                         <div  className="absolute bottom-2 left-2">
                                             <h3>Hà Nội</h3>
                                             <p className="text-sm">49.576 tin đăng</p>
                                         </div>
-                                        
+
                                     </div>
                                     <div className="w-[45%]  h-full rounded-md relative">
-                                      
+
                                             <Image  layout="fill"  src="/banner.png" className="object-cover w-full h-full rounded-md shadow opacity-80" />
-                                     
+
                                         <div  className="absolute bottom-2 left-2">
                                             <h3>Hồ Chí MInh</h3>
                                             <p className="text-sm">69.524 tin đăng</p>
                                         </div>
                                     </div>
-                                
+
                                 </div>
                             </div>
                             <div className="text-gray-500  flex-[7_1_0%] text-xs gap-5 flex flex-row tablet:gap-4">
@@ -162,7 +153,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                                 </div>
                                 <div className="flex-[2_1_0%] flex flex-col gap-1 tablet:flex-none">
                                     <h4 className="font-semibold">Khu vực nổi bật</h4>
-                                    
+
                                     <div className="flex flex-row">
                                         <div className="w-5 h-5 relative">
                                             <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/arrow-down-red.svg" className="-rotate-90 w-5 h-5"/>
@@ -235,16 +226,16 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                 <div  className="w-9/12 space-y-4 tablet:w-full bigger:w-7/12 overflow-hidden">
                     <div className="flex  w-full justify-between">
 
-                  
+
                         <div className="flex flex-row items-center space-x-2">
                             <div  className="w-5 h-5 relative" >
                             <Image width="100%" height="100%" layout="fill" objectFit="contain" src="/apartment_home.svg" className="w-5 h-5"/>
                             </div>
                             <h2 className="font-bold">Tin tức</h2>
                         </div>
-                     
-                        
-                        
+
+
+
                         <div className="flex items-center">
                             <Link href="/tin-tuc">
                                 <a className="text-sm font-bold text-purple-700 flex gap-2">Đến trang tin tức
@@ -261,7 +252,7 @@ const HomeDesktop:React.FC<HomeDesktopProps>=()=>{
                             <CardNews />
                             <CardNews />
                             <CardNews />
-                    
+
                         </div>
                         <div className="border-b-2 border-gray-100 mt-2"></div>
                     </div>

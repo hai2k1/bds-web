@@ -15,12 +15,14 @@ class RegisterController extends Controller
     {
         $request->validate([
             'email' => ['required', 'email', 'max:255', 'unique:' . Config::get('restify.auth.table', 'users')],
+            'phone' => ['required', 'max:11'],
             'password' => ['required', 'confirmed'],
         ]);
 
         $user = User::forceCreate([
-            'name' => $request->input('name'),
+            'username' => $request->input('username'),
             'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
             'password' => Hash::make($request->input('password')),
         ]);
 
