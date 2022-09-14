@@ -5,8 +5,8 @@ import type {IPrimaryLayout} from '../../interfaces/interfaces';
 import dynamic from 'next/dynamic';
 import {ScrollButton} from '../button';
 import {useDispatch, useSelector} from "react-redux";
-import {selectAuthState} from "../../reducers/actions/auth";
-import {checkAuth} from "../../reducers/actions/auth";
+import {selectAuthState, setAuth, setUser} from "../../reducers/actions/auth";
+import {checkAuth, getUserMe} from "../../api/auth";
 import {useEffect} from "react";
 
 
@@ -28,8 +28,13 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
 
     useEffect(() => {
         if(!authState){
-            // @ts-ignore
-            dispatch(checkAuth())
+          if(checkAuth()){
+              dispatch(setAuth(checkAuth()))
+              getUserMe().then(r => {
+                  dispatch(setUser(r.data.data.attributes))
+              })
+          }
+
         }
         // @ts-ignore
 

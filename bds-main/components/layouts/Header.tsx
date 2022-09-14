@@ -5,7 +5,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import useBlur from '../../hooks/useBlur';
 import type { IHeader } from '../../interfaces/interfaces';
-import { selectAuthState, setAuthState } from "../../reducers/actions/auth";
+import {selectAuthState, selectUser, setAuthState} from "../../reducers/actions/auth";
 import { RangeSlider } from '../button';
 import { RenderPopUp } from '../renderHeader';
 
@@ -28,6 +28,7 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
     const [district,setDistrict]=useState<string>('')
     const [ward,setWard]=useState<string>('')
     const [location,setLocation]=useState<string>('')
+    const user = useSelector(selectUser)
     useEffect(()=>{
         const setPath=()=>{
             if(router.pathname==='/'){
@@ -39,7 +40,6 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
             }else{
                 setPathName(false)
             }
-
         }
         setPath()
     },[router])
@@ -57,6 +57,8 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
         router.push('/query/1')
     }
 
+    // @ts-ignore
+    // @ts-ignore
     return(
         <header
             {...headerProps}
@@ -146,9 +148,11 @@ const Header : React.FC<IHeader>=({ ...headerProps })=>{
                                 <div  className="labelDrop  relative group " ref={ref}>
 
                                         <div className="w-fit flex items-center">
-                                            <button onClick={handleClick} className="flex items-center truncate ">Nguyễn Văn Nam
+
+                                            <button onClick={handleClick} className="flex items-center truncate ">
 
                                             </button>
+
                                             <div className="cursor-pointer h-4 w-3 ml-2 relative" onClick={handleClick} >
                                                 <Image width="100%" height="100%" layout="fill" objectFit="contain"    src="/down_button_black.svg" className="cursor-pointer h-4 w-3 ml-2"/>
                                             </div>

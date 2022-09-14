@@ -23,22 +23,16 @@ export const authSlice = createSlice({
             state.user = action.payload.user;
             state.authState = true;
         },
-        checkAuth(state, action){
-            getUserMe().then((res)=>{
-                if(res.status == 404){
-                    state.authState = false;
-                    clearToken();
-                }
-                else {
-                    state.authState = true;
-                    state.user = res.data.user;
-                }
-            })
+        setAuth(state, action){
+            state.authState = action.payload;
+        },
+        setUser(state, action){
+            state.user = action.payload;
         }
     },
 });
 
-export const {setAuthState,checkAuth} = authSlice.actions;
+export const {setAuthState,setAuth,setUser} = authSlice.actions;
 
 export const selectAuthState = (state: AppState) => state.auth.authState;
 export const selectUser = (state: AppState) => state.auth.user;
